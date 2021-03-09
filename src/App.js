@@ -3,20 +3,22 @@ import axios from 'axios';
 
 import './App.scss';
 
+import API_DATA from './services/api.data';
+
 import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Alert from 'react-bootstrap/Alert';
 
-import API_DATA from './services/api.data';
+import User from './components/user/user.component';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      user: null,
-      alert: ''
+      user: null
     };
   }
 
@@ -28,40 +30,28 @@ class App extends React.Component {
   componentDidMount() {
     if (!this.state.user) {
       this.getUserData()
-        .then(data => {
-          this.setState({ user: data, alert: 'User found!' });
+        .then(userData => {
+          this.setState({ user: userData });
         })
         .catch(err => console.error(err));
     }
   }
 
   render() {
-    const currentUser = this.state.user;
+    const user = this.state.user;
     return (
       <div className='app'>
         <Container className='container'>
-          {this.state.alert ?
-            <Row>
-              <Col>
-                <Alert variant='primary'>{this.state.alert}</Alert>
-              </Col>
-            </Row>
-            :
-            null
-          }
+          <Navbar bg='dark' variant='dark' expand='lg'>
+            <Navbar.Brand href='/'>React Crud Example</Navbar.Brand>
+            <Nav className='ml-auto'>
+              <Nav.Link href='/'>Users</Nav.Link>
+            </Nav>
+          </Navbar>
           <Row>
             <Col>
-              {currentUser ?
-                <div>
-                  <h3>USER {currentUser.id}</h3>
-                  <h4>{currentUser.name}</h4>
-                  <p><strong>Username: {currentUser.username}</strong></p>
-                  <em>Email: {currentUser.email}</em>
-                  <p>Phone: {currentUser.phone}</p>
-                  <p>Website: {currentUser.website}</p>
-
-                  <pre>{JSON.stringify(currentUser)}</pre>
-                </div>
+              {user ?
+                <User user={user} />
                 :
                 <em>Retrieving User...</em>
               }
