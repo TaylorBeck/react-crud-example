@@ -1,7 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 
 App {
-  text-align: center;
 }
 
 .navbar {
@@ -9,5 +8,6 @@ App {
 }
 
 .container {
+  margin-top: 40px;
   padding: 20px 0;
 }

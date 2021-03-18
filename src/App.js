@@ -18,44 +18,51 @@ class App extends React.Component {
     super();
 
     this.state = {
-      user: null
+      users: null
     };
   }
 
-  async getUserData() {
-    const response = await axios(`${API_DATA.endpoint}/users/1`);
-    return response.data;
+  async getUsersData() {
+    try {
+      const response = await axios(`${API_DATA.endpoint}/users`);
+      return response.data;
+    } catch(error) {
+      console.error(error);
+    }
   }
 
   componentDidMount() {
     if (!this.state.user) {
-      this.getUserData()
-        .then(userData => {
-          this.setState({ user: userData });
+      this.getUsersData()
+        .then(usersData => {
+          this.setState({ users: usersData });
         })
         .catch(err => console.error(err));
     }
   }
 
   render() {
-    const user = this.state.user;
+    const { users } = this.state;
     return (
       <div className='app'>
         <Container className='container'>
-          <Navbar bg='dark' variant='dark' expand='lg'>
+          <Navbar fixed='top' bg='dark' variant='dark' expand='lg'>
             <Navbar.Brand href='/'>React Crud Example</Navbar.Brand>
             <Nav className='ml-auto'>
               <Nav.Link href='/'>Users</Nav.Link>
             </Nav>
           </Navbar>
           <Row>
-            <Col>
-              {user ?
-                <User user={user} />
-                :
-                <em>Retrieving User...</em>
-              }
-            </Col>
+            {users ? users.map(user => {
+              return (
+                <Col lg={3} md={4} sm={6} xs={12}>
+                  <User key={user.id} user={user} />
+                </Col>
+              );
+            })
+            :
+              <em>Retrieving Users...</em>
+            }
           </Row>
         </Container>
       </div>
