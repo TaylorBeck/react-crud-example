@@ -15,20 +15,20 @@ const User = (userData) => {
   const userWebsiteFullUrl = `https://${user.website}`;
 
   return (
-    <Card>
-      <Card.Img className='user-image' variant='top' src={imageUrls[user.id - 1]} />
+    <Card className='text-center'>
+      <Card.Img variant='top' src={imageUrls[user.id - 1]} />
       <Card.Body>
-        <Card.Title className='text-center name'>{user.name}</Card.Title>
+        <Card.Title title={user.name}>{user.name}</Card.Title>
       </Card.Body>
       <ListGroup className='list-group-flush'>
-        <ListGroup.Item><strong>Email:</strong> {user.email}</ListGroup.Item>
-        <ListGroup.Item><strong>Phone:</strong> {user.phone}</ListGroup.Item>
-        <ListGroup.Item className='text-center'>
+        <ListGroup.Item title={user.email}>{user.email}</ListGroup.Item>
+        <ListGroup.Item>📱 {user.phone}</ListGroup.Item>
+        <ListGroup.Item>
           <Card.Link href={userWebsiteFullUrl}>{user.website}</Card.Link>
         </ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Button className='text-center' variant="primary" href={googleMapsUrl} target='_blank'>Find Me</Button>
+        <Button variant='primary' href={googleMapsUrl} target='_blank'>Find Me</Button>
       </Card.Body>
     </Card>
   );

@@ -1,26 +1,18 @@
-.card {
-  width: 14rem;
-  margin: 5px 10px;
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  .name {
-    font-size: 1em;
+.card {
+  margin: 5px;
+  width: auto;
+
+  .card-title {
+    @include text-ellipsis();
   }
 
   .list-group-item {
-    font-size: 10px;
-
-    .card-link {
-      font-size: 14px;
-    }
-  }
-
-  .card-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media screen and (max-width: 575px) {
-    width: 90%;
+    @include text-ellipsis();
   }
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import './App.scss';
 
-import API_DATA from './services/api.data';
+import API_DATA from './data/api.data';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -43,8 +43,8 @@ class App extends React.Component {
     const { users } = this.state;
     return (
       <div className='app'>
-        <Container>
-          <Row className='users-list'>
+        <Container fluid='xl'>
+          <Row>
             {users ? users.map(user => {
               return (
                 <Col lg={3} md={4} sm={6} xs={12}>
