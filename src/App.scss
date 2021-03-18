@@ -1,7 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 
-App {
-}
+App {}
 
 .navbar {
   margin-bottom: 1rem;
@@ -10,4 +9,12 @@ App {
 .container {
   margin-top: 40px;
   padding: 20px 0;
+}
+
+.users-list {
+  @media screen and (max-width: 575px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

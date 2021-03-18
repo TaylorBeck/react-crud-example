@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button';
 const User = (userData) => {
   const { user } = userData;
   const { address: { geo } } = user;
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${geo.lat},${geo.lon}`;
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${geo.lat},${geo.lng}`;
   const userWebsiteFullUrl = `https://${user.website}`;
 
   return (
@@ -28,7 +28,7 @@ const User = (userData) => {
         </ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <Button className='text-center' variant="primary" href={googleMapsUrl}>Find Me</Button>
+        <Button className='text-center' variant="primary" href={googleMapsUrl} target='_blank'>Find Me</Button>
       </Card.Body>
     </Card>
   );
