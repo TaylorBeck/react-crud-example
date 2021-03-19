@@ -8,7 +8,7 @@ import './header.styles.scss';
 const Header = () => (
   <Navbar bg='dark' variant='dark' expand='sm'>
     <Navbar.Brand href='/'>React Crud Example</Navbar.Brand>
-    <Navbar.Toggle aria-controls="collapsable-nav" />
+    <Navbar.Toggle aria-controls='collapsable-nav' />
     <Navbar.Collapse id='collapsable-nav'>
       <Nav className='ml-auto'>
         <Nav.Link href='/'>Users</Nav.Link>
